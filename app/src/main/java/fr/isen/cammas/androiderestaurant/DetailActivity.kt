@@ -14,5 +14,9 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val itemName = intent.getStringExtra("itemName")
+
+        binding.detailTitle.text = itemName
     }
 }
