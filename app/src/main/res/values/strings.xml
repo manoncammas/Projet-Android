@@ -5,4 +5,5 @@
     <string name="desserts_action">Desserts</string>
     <string name="titre">AndroidERestaurant</string>
     <string name="element_text" />
+    <string name="titreIngredients">"Ingredients : "</string>
 </resources>

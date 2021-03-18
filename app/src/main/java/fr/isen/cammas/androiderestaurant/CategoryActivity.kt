@@ -66,6 +66,7 @@ class CategoryActivity : AppCompatActivity() {
             val adapter = CategoryAdapter(it) { item ->
                 val intent = Intent(this, DetailActivity::class.java)
                 intent.putExtra("itemName", item.name)
+                intent.putExtra("item", item)
                 startActivity(intent)
             }
             binding.listMenu.layoutManager = LinearLayoutManager(this)
