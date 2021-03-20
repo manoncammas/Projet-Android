@@ -24,7 +24,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="45dp"
         android:text="@string/plats_action"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +36,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="45dp"
         android:text="@string/desserts_action"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,13 +69,26 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="176dp"
-        android:layout_height="202dp"
+        android:layout_width="168dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dessertsAction"
+        app:layout_constraintTop_toBottomOf="@+id/bleAction"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/livraison" />
+
+    <Button
+        android:id="@+id/bleAction"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="45dp"
+        android:text="@string/ble_action"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dessertsAction" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

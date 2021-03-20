@@ -2,7 +2,9 @@ package fr.isen.cammas.androiderestaurant
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import com.squareup.picasso.Picasso
+import com.synnapps.carouselview.ImageListener
 import fr.isen.cammas.androiderestaurant.databinding.ActivityCategoryBinding
 import fr.isen.cammas.androiderestaurant.databinding.ActivityDetailBinding
 import fr.isen.cammas.androiderestaurant.databinding.ActivityHomeBinding
@@ -22,10 +24,16 @@ class DetailActivity : AppCompatActivity() {
         binding.detailTitle.text = item.name
         binding.ingredients.text = item.ingredients.map{it.name}.joinToString(", ")
 
-        if(item.images[0].isNullOrEmpty()){
-            Picasso.get().load("https://img.icons8.com/carbon-copy/2x/no-image.png").into(binding.imageDetail)
-        }else{
-            Picasso.get().load(item.images[0]).into(binding.imageDetail)
+        var imageListener : ImageListener = object : ImageListener {
+            override fun setImageForPosition(position: Int, imageView: ImageView){
+                if(item.images[0].isNullOrEmpty()){
+                    Picasso.get().load("https://www.allyoucanpost.com/bundles/aycpfront/front/assets/img/empty.png").into(imageView)
+                }else{
+                    Picasso.get().load(item.images[position]).into(imageView)
+                }
+            }
         }
+        binding.carouselView.pageCount = item.images.size
+        binding.carouselView.setImageListener(imageListener)
     }
 }

@@ -19,6 +19,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val monIntent : Intent = Intent(this,CategoryActivity::class.java)
+        val monIntent2 : Intent = Intent(this, BLEScanActivity::class.java)
 
         binding.entreesAction.setOnClickListener {
             monIntent.putExtra("category", "Entrées")
@@ -31,6 +32,9 @@ class HomeActivity : AppCompatActivity() {
         binding.dessertsAction.setOnClickListener {
             monIntent.putExtra("category", "Desserts")
             startActivity(monIntent)
+        }
+        binding.bleAction.setOnClickListener {
+            startActivity(monIntent2)
         }
     }
 
