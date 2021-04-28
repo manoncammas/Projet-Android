@@ -2,9 +2,11 @@ package fr.isen.cammas.androiderestaurant
 
 import android.Manifest
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.bluetooth.le.BluetoothLeScanner
 import android.bluetooth.le.ScanCallback
+import android.bluetooth.le.ScanRecord
 import android.bluetooth.le.ScanResult
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -33,6 +35,8 @@ class BLEScanActivity : AppCompatActivity() {
     // Stops scanning after 10 seconds.
     private val SCAN_PERIOD: Long = 10000
     private lateinit var adapter: DeviceListAdapter
+
+    var listeDevices: MutableList<BluetoothDevice> = mutableListOf()
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,7 +73,8 @@ class BLEScanActivity : AppCompatActivity() {
             }
             else -> {
                 bluetoothLeScanner = bluetoothAdapter?.bluetoothLeScanner
-                initRecycler()
+                //initRecycler()
+                loadDevices(listeDevices)
             }
         }
     }
@@ -95,10 +100,26 @@ class BLEScanActivity : AppCompatActivity() {
         }
     }
 
-    private fun initRecycler(){
-        adapter= DeviceListAdapter((mutableListOf()))
+    /*private fun initRecycler(){
+        adapter= DeviceListAdapter((mutableListOf())) {device ->
+            val intent = Intent(this, DetailDeviceActivity::class.java)
+            intent.putExtra("NameDevice", device.name)
+            startActivity(intent)
+        }
         binding.recyclerViewBle.layoutManager = LinearLayoutManager(this)
         binding.recyclerViewBle.adapter = adapter
+    }*/
+
+    private fun loadDevices(listDevices: MutableList<BluetoothDevice>?) {
+        listDevices?.let{
+            adapter = DeviceListAdapter(it) {device ->
+                val intent = Intent(this, DetailDeviceActivity::class.java)
+                intent.putExtra("deviceName",device.name)
+                startActivity(intent)
+            }
+            binding.recyclerViewBle.layoutManager = LinearLayoutManager(this)
+            binding.recyclerViewBle.adapter = adapter
+        }
     }
 
     private fun scanLeDevice() {
@@ -122,28 +143,20 @@ class BLEScanActivity : AppCompatActivity() {
 
         override fun onScanResult(callbackType: Int, result: ScanResult) {
             super.onScanResult(callbackType, result)
-            //Log.i("test Bluetooth", "${result.device}")
+
+            //Log.i("test Bluetooth", "${result.device.name}")
+
             adapter.addDevice(result.device)
             adapter.notifyDataSetChanged()
         }
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == REQUEST_ENABLE_BT && resultCode == RESULT_OK)
             startBLEIfPossible()
     }
-
-    /*private fun displayDevice(device: List<BluetoothDevice>?){
-        device?.let {
-            val adapter = DeviceListAdapter(it) { device ->
-                val intent = Intent(this, DetailDeviceActivity::class.java)
-                startActivity(intent)
-            }
-            binding.recyclerViewBle.layoutManager = LinearLayoutManager(this)
-            binding.recyclerViewBle.adapter = adapter
-        }
-    }*/
 
     companion object {
         const private val REQUEST_ENABLE_BT = 33

@@ -3,8 +3,8 @@
     package="fr.isen.cammas.androiderestaurant">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidERestaurant"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BLEScanActivity"></activity>
+        <activity android:name=".DetailDeviceActivity"></activity>
+        <activity android:name=".BLEScanActivity" />
         <activity android:name=".DetailActivity" />
         <activity android:name=".CategoryActivity" />
         <activity android:name=".HomeActivity">

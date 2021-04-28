@@ -10,7 +10,6 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.GsonBuilder
-import com.squareup.picasso.Picasso
 import fr.isen.cammas.androiderestaurant.databinding.ActivityCategoryBinding
 import org.json.JSONObject
 
@@ -58,10 +57,10 @@ class CategoryActivity : AppCompatActivity() {
     private fun parsingResult (resultJSON: String, category: String){
         val result = GsonBuilder().create().fromJson(resultJSON, DataResult::class.java)
         val itemsCat = result.data.firstOrNull { it.name == category } //on recupere la premiere ou null dont le nom est egal a celui en parametre
-        displayMenu(itemsCat?.items) //on affiche les items de la categorie correspondante
+        loadMenu(itemsCat?.items) //on affiche les items de la categorie correspondante
     }
 
-    private fun displayMenu(itemsCat: List<Item>?) {
+    private fun loadMenu(itemsCat: List<Item>?) {
         itemsCat?.let {//si la liste est pas vide, alors (= if itemsCat != null)
             val adapter = CategoryAdapter(it) { item ->
                 val intent = Intent(this, DetailActivity::class.java)

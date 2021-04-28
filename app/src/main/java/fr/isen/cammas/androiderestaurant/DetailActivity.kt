@@ -35,5 +35,27 @@ class DetailActivity : AppCompatActivity() {
         }
         binding.carouselView.pageCount = item.images.size
         binding.carouselView.setImageListener(imageListener)
+
+        var quantite = 0
+        val prix = item.prices[0].price.toFloat()
+        var totalPrice : Float = 0F
+
+        binding.removeButton.setOnClickListener {
+            quantite -= 1
+            if (quantite < 0) {
+                quantite=0
+            }
+            totalPrice = quantite*prix
+            binding.quantite.text = quantite.toString()
+            binding.totalButton.text = "TOTAL ${totalPrice} €"
+        }
+
+        binding.addButton.setOnClickListener {
+            quantite += 1
+            totalPrice = quantite*prix
+            binding.quantite.text = quantite.toString()
+            binding.totalButton.text = "TOTAL ${totalPrice} €"
+        }
+
     }
 }

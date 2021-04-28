@@ -7,10 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import fr.isen.cammas.androiderestaurant.databinding.CellCategoryBinding
 import fr.isen.cammas.androiderestaurant.databinding.CellDeviceBinding
 
-class DeviceListAdapter(private val devices: MutableList<BluetoothDevice>) : RecyclerView.Adapter<DeviceListAdapter.DeviceViewHolder>() {
+class DeviceListAdapter(private val devices: MutableList<BluetoothDevice>, private val onDeviceClickListener: (BluetoothDevice) -> Unit) : RecyclerView.Adapter<DeviceListAdapter.DeviceViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeviceViewHolder {
         val binding = CellDeviceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -23,9 +22,14 @@ class DeviceListAdapter(private val devices: MutableList<BluetoothDevice>) : Rec
     }
 
     override fun onBindViewHolder(holder: DeviceViewHolder, position: Int) {
-        holder.titleDevice.text = devices[position].toString()
+        if(devices[position].name == null){
+            holder.titleDevice.text = devices[position].toString()
+        }
+        else {
+            holder.titleDevice.text = devices[position].name
+        }
          holder.layout.setOnClickListener {
-            //onDeviceClickListener(devices[position])
+            onDeviceClickListener(devices[position])
         }
     }
 
