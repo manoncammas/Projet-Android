@@ -18,15 +18,18 @@ class DeviceListAdapter(private val devices: MutableList<BluetoothDevice>, priva
 
     class DeviceViewHolder(binding: ConstraintLayout) : RecyclerView.ViewHolder(binding) {
         val titleDevice: TextView = binding.findViewById(R.id.titleDevice)
+        val addressDevice: TextView = binding.findViewById(R.id.addressDevice)
         val layout = binding.findViewById<View>(R.id.cellDeviceLayout)
     }
 
     override fun onBindViewHolder(holder: DeviceViewHolder, position: Int) {
         if(devices[position].name == null){
-            holder.titleDevice.text = devices[position].toString()
+            holder.titleDevice.text = "Device Unknown"
+            holder.addressDevice.text = devices[position].address
         }
         else {
             holder.titleDevice.text = devices[position].name
+            holder.addressDevice.text = devices[position].address
         }
          holder.layout.setOnClickListener {
             onDeviceClickListener(devices[position])

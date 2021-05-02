@@ -18,7 +18,7 @@ class DetailDeviceActivity : AppCompatActivity() {
         var deviceName = intent.getStringExtra("deviceName")
 
         if(deviceName==null)
-            binding.titleDetailDevice.text="Unknown device"
+            binding.titleDetailDevice.text="Device Unknown"
         else
             binding.titleDetailDevice.text=deviceName.toString()
     }
