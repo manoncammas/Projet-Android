@@ -115,6 +115,7 @@ class BLEScanActivity : AppCompatActivity() {
             adapter = DeviceListAdapter(it) {device ->
                 val intent = Intent(this, DetailDeviceActivity::class.java)
                 intent.putExtra("deviceName",device.name)
+                intent.putExtra("ble_device",device)
                 startActivity(intent)
             }
             binding.recyclerViewBle.layoutManager = LinearLayoutManager(this)

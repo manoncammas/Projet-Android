@@ -1,14 +1,26 @@
 <resources>
     <string name="app_name">AndroidERestaurant</string>
+
     <string name="entrees_action">Entrées</string>
     <string name="plats_action">Plats</string>
     <string name="desserts_action">Desserts</string>
+
     <string name="titre">AndroidERestaurant</string>
     <string name="element_text" />
     <string name="titreIngredients">Ingredients : </string>
+
     <string name="ble_action">BLE</string>
     <string name="text_scan_play">Lancer le scan BLE</string>
     <string name="text_scan_pause">Scan BLE en cours …</string>
+
     <string name="total_action">TOTAL 0 €</string>
     <string name="quantite_nb">0</string>
+
+    <string name="ble_device_status">Status : %1$s</string>
+    <string name="ble_device_status_connecting">Connexion en cours</string>
+    <string name="ble_device_status_connected">Connecté</string>
+    <string name="ble_device_status_disconnected">Déconnecté</string>
+    <string name="ble_device_status_disconnecting">Déconnexion en cours</string>
+
+
 </resources>
