@@ -5,7 +5,6 @@ import android.bluetooth.BluetoothGatt
 import android.bluetooth.BluetoothGattCharacteristic
 import android.bluetooth.BluetoothGattDescriptor
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -89,7 +88,7 @@ class DetailDeviceAdapter(private val gatt: BluetoothGatt?, private val serviceL
             val result = gatt?.readCharacteristic(characteristic)
             if (characteristic.value != null) {
                 val texteRecu = String(characteristic.value)
-                holder.caracValeur.text = "Valeur : ${ texteRecu}"
+                holder.caracValeur.text = "Valeur : $texteRecu"
             }
         }
 
@@ -166,11 +165,12 @@ class DetailDeviceAdapter(private val gatt: BluetoothGatt?, private val serviceL
         ATTRIBUT_GENERIQUE("00001801-0000-1000-8000-00805f9b34fb", "Attribut générique"),
         SERVICE_SPECIFIQUE("466c1234-f593-11e8-8eb2-f2801f1b9fd1", "Service Spécifique "),
         SERVICE_SPE2("466c9abc-f593-11e8-8eb2-f2801f1b9fd1", "Service Spécifique "),
-        UNKNOW_SERVICE("", "Inconnu");
+        UNKNOWN_SERVICE("", "Inconnu");
+
         companion object {
             fun getBLEAttributeFromUUID(uuid: String) = values().firstOrNull {
                 it.uuid == uuid
-            } ?: UNKNOW_SERVICE
+            } ?: UNKNOWN_SERVICE
         }
     }
 }
